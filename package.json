@@ -1,0 +1,25 @@
+{
+  "name": "mevn",
+  "version": "1.0.0",
+  "description": "MEVN is a framework for an easy starting point with MongoDB, Express, Vue.js, and Node.js based applications. It is designed to give you a quick and organized way to start developing MEVN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mevnio/mevn.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "Vue",
+    "Node"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mevnio/mevn/issues"
+  },
+  "homepage": "https://github.com/mevnio/mevn#readme"
+}
