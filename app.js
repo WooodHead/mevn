@@ -4,6 +4,20 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var nconf = require('nconf');
+var mongoose = require('mongoose');
+
+// loads config file.
+nconf.add('app', {type: 'file', file: './config/config.json'});
+
+// connects to MongdoDB.
+mongoose.connect(nconf.stores.app.get('mongodb'));
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log("mongoose connected!!");
+});
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -21,6 +35,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req,res,next){
+    req.mevn = {
+      db: db,
+      nconf: nconf
+    };
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE");
+    next();
+});
 
 app.use('/', index);
 app.use('/users', users);
