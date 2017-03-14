@@ -12,6 +12,10 @@ module.exports = function(grunt) {
       backend: {
         files: ['app/routes/**/*.js'],
         tasks: ['default']
+      },
+      frontend: {
+        files: ['fe/**/*.js', 'fe/**/*.vue'],
+        tasks: ['webpack']
       }
     },
     // Webpack.
