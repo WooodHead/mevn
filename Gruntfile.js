@@ -4,6 +4,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-webpack');
+  // compiles less.
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -65,6 +67,18 @@ module.exports = function(grunt) {
           hints: false
         },
         devtool: '#eval-source-map'
+      }
+    },
+    // less.
+    less: {
+      compile: {
+        files: {
+          './public/stylesheets/style.css': './fe/css/main.less'
+        },
+        options: {
+          cleancss: true,
+          compress: true
+        }
       }
     }
   });
