@@ -7,6 +7,9 @@ module.exports = function(grunt) {
   // compiles less.
   grunt.loadNpmTasks('grunt-contrib-less');
 
+  // concats all the third party libs.
+  grunt.loadNpmTasks('grunt-contrib-concat');
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     // Watch Backend.
@@ -80,7 +83,19 @@ module.exports = function(grunt) {
           compress: true
         }
       }
-    }
+    },
+    // concat, moves third parties library to public directory.
+    concat: {
+      options: {
+        separator: ';',
+      },
+      dist: {
+        src: [
+          'node_modules/jquery/dist/jquery.min.js',
+        ],
+        dest: path.resolve(__dirname, './public/javascripts') + '/libs.js',
+      },
+    },
   });
 
   grunt.registerTask('default', 'Log some stuff.', function() {

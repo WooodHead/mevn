@@ -1,5 +1,6 @@
 app/node_modules/*
 node_modules/*
+public/javascripts/libs.js
 public/javascripts/build.js
 public/javascripts/build.js.map
 public/stylesheets/style.css
