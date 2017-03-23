@@ -1,11 +1,10 @@
 var path = require('path')
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-webpack');
-  // compiles less.
-  grunt.loadNpmTasks('grunt-contrib-less');
 
   // concats all the third party libs.
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -28,9 +27,8 @@ module.exports = function(grunt) {
       frontend: {
         entry: './fe/main.js',
         output: {
-          path: path.resolve(__dirname, './public/javascripts/'),
-          publicPath: '/dist/',
-          filename: 'build.js'
+          path: path.resolve(__dirname, './public/'),
+          filename: 'javascripts/build.js'
         },
         module: {
           rules: [
@@ -39,6 +37,14 @@ module.exports = function(grunt) {
               loader: 'vue-loader',
               options: {
                 loaders: {
+                  css: ExtractTextPlugin.extract({
+                    use: 'css-loader',
+                    fallback: 'vue-style-loader'
+                  }),
+                  scss: ExtractTextPlugin.extract({
+                    use: 'css-loader!sass-loader',
+                    fallback: 'vue-style-loader'
+                  }),
                 }
                 // other vue-loader options go here
               }
@@ -57,6 +63,9 @@ module.exports = function(grunt) {
             }
           ]
         },
+        plugins: [
+            new ExtractTextPlugin("stylesheets/style.css")
+        ],
         resolve: {
           alias: {
             'vue$': 'vue/dist/vue.esm.js'
@@ -70,18 +79,6 @@ module.exports = function(grunt) {
           hints: false
         },
         devtool: '#eval-source-map'
-      }
-    },
-    // less.
-    less: {
-      compile: {
-        files: {
-          './public/stylesheets/style.css': './fe/css/main.less'
-        },
-        options: {
-          cleancss: true,
-          compress: true
-        }
       }
     },
     // concat, moves third parties library to public directory.
