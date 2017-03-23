@@ -3,5 +3,7 @@ node_modules/*
 public/javascripts/libs.js
 public/javascripts/build.js
 public/javascripts/build.js.map
+public/javascripts/all.min.js
 public/stylesheets/style.css
 public/stylesheets/lib.css
+public/stylesheets/all.min.css

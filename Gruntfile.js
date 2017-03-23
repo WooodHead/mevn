@@ -8,6 +8,10 @@ module.exports = function(grunt) {
 
   // concats all the third party libs.
   grunt.loadNpmTasks('grunt-contrib-concat');
+  // minimize JS.
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  // minimize CSS.
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -98,6 +102,28 @@ module.exports = function(grunt) {
           'node_modules/bootstrap/dist/css/bootstrap.min.css'
         ],
         dest: path.resolve(__dirname, './public/stylesheets') + '/lib.css',
+      }
+    },
+    // uglify, minimize js.
+    uglify: {
+      target: {
+        files: {
+          'public/javascripts/all.min.js': [
+            'public/javascripts/libs.js',
+            'public/javascripts/build.js',
+          ]
+        }
+      }
+    },
+    //cssmin, minimize css.
+    cssmin: {
+      target: {
+        files: {
+          'public/stylesheets/all.min.css': [
+            'public/stylesheets/lib.css',
+            'public/stylesheets/style.css'
+          ]
+        }
       }
     },
   });
