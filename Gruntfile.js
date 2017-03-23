@@ -86,12 +86,19 @@ module.exports = function(grunt) {
       options: {
         separator: ';',
       },
-      dist: {
+      js: {
         src: [
           'node_modules/jquery/dist/jquery.min.js',
+          'node_modules/bootstrap/dist/js/bootstrap.min.js'
         ],
         dest: path.resolve(__dirname, './public/javascripts') + '/libs.js',
       },
+      css: {
+        src: [
+          'node_modules/bootstrap/dist/css/bootstrap.min.css'
+        ],
+        dest: path.resolve(__dirname, './public/stylesheets') + '/lib.css',
+      }
     },
   });
 
