@@ -13,7 +13,7 @@ $ npm install
 $ grunt watch
 ```
 
-#Configuration
+# Configuration
 
 ```sh
 cp ./config/config.json.template ./config/config.json
