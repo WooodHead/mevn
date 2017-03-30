@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     watch: {
       backend: {
         files: ['app/routes/**/*.js'],
-        tasks: ['default']
+        tasks: ['']
       },
       frontend: {
         files: ['fe/**/*.js', 'fe/**/*.vue'],
@@ -128,31 +128,6 @@ module.exports = function(grunt) {
     },
   });
 
-  grunt.registerTask('default', 'Log some stuff.', function() {
-    grunt.log.write('Logging some stuff...').ok();
-  });
-
+  grunt.registerTask('compile', 'Compile the project',
+                        ['webpack','concat','uglify','cssmin']);
 };
-
-/*
- * Not Sure how to use it.
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ])
-}
-*/
